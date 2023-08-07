@@ -1,0 +1,20 @@
+* {
+  background-color: #102331;
+}
+.controllers{
+  color:white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.controllers p{
+  margin:10px;
+}
+
+.symbols{
+  color:white;
+}
+.precision{
+  color:white;
+}

@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import ErrorBoundary from "./ErrorBoundary";
+import { fetchSymbols } from "./features/symbols/symbolsSlice";
+
+store.dispatch(fetchSymbols());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

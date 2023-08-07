@@ -8,6 +8,7 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
+    color:white;
 }
 
 .columnsDescription{
@@ -24,13 +25,30 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
-    border: 1px solid gray;
 }
 
 .cell{
     width: 100%;
-    height: 20px;
+    height: 25px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    border:1px solid gray;
+    /* border:1px solid gray; */
+}
+#bid{
+    background-color: rgb(142, 210, 142);
+}
+#bid .row {
+    border-top:1px solid rgb(142, 210, 142);
+    border-bottom:1px solid rgb(142, 210, 142);
+}
+
+#ask{
+    background-color: rgb(219, 131, 131);
+
+}
+
+#ask .row {
+    border-top:1px solid rgb(219, 131, 131);
+    border-bottom:1px solid rgb(219, 131, 131);
 }

@@ -55,15 +55,9 @@ const orderBookSlice = createSlice({
         }
       },
       prepare(item) {
-        let isBid = false;
-        if (item[2] > 0) {
-          isBid = true;
-        } else {
-          isBid = false;
-        }
         return {
           payload: {
-            isBid,
+            isBid: item[2] > 0,
             object: {
               price: item[0],
               count: item[1],
@@ -81,10 +75,8 @@ const orderBookSlice = createSlice({
             (element) => element.price === object.object.price
           );
           if (index < 0) {
-            // state.bids.push(object.object);
-            //
+            return state;
           } else {
-            console.log("delete ,bids ", object.object);
             state.bids.splice(index, 1);
           }
         } else {
@@ -92,25 +84,16 @@ const orderBookSlice = createSlice({
             (element) => element.price === object.object.price
           );
           if (index < 0) {
-            // state.bids.push(object.object);
-            //
+            return state;
           } else {
-            console.log("delete ,asks ", object.object);
-
             state.asks.splice(index, 1);
           }
         }
       },
       prepare(item) {
-        let isBid = false;
-        if (item[2] > 0) {
-          isBid = true;
-        } else {
-          isBid = false;
-        }
         return {
           payload: {
-            isBid,
+            isBid: item[2] > 0,
             object: {
               price: item[0],
               count: item[1],
