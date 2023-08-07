@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createBookBySnapshot,
   selectOrderBook,
+  updateOrderBook,
+  deleteFromOrderBook,
 } from "./features/orderbook/orderBookSlice";
+import OrderBookTable from "./features/orderbook/OrderBookTable";
 
 function App() {
-  // const [snapshotReceived, setSnapshotReceived] = useState(false);
-
   const dispatch = useDispatch();
   const orderBook = useSelector(selectOrderBook);
-  // console.log("oooo", orderBook);
   useEffect(() => {
     let receivedSnapshot = false;
     const ws = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
@@ -32,7 +32,18 @@ function App() {
             console.log("snapShoti", message);
             dispatch(createBookBySnapshot(message));
           } else {
-            console.log("change", message);
+            if (message[1] !== "hb") {
+              console.log("change", message);
+              //add or update if count > 0
+              //amount > 0 add/update bids
+              //amunt < 0 add/update asks
+              if (message[1][1] > 0) {
+                dispatch(updateOrderBook(message[1]));
+              } else {
+                dispatch(deleteFromOrderBook(message[1]));
+                console.log("delete");
+              }
+            }
           }
           receivedSnapshot = true;
         }
@@ -56,19 +67,7 @@ function App() {
 
   return (
     <div className="App">
-      {orderBook[0] && <p> {orderBook[0]}</p>}
-      {orderBook[1] &&
-        orderBook[1]?.map((item, key) => (
-          <p key={key}>
-            {item?.map((el, key) =>
-              key === 0
-                ? " Price " + el
-                : key === 1
-                ? " Count " + el
-                : " Amount " + el
-            )}
-          </p>
-        ))}
+      <OrderBookTable bids={orderBook.bids} asks={orderBook.asks} />
     </div>
   );
 }
