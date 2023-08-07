@@ -15,6 +15,7 @@ function App() {
   const [precision, setPrecision] = useState("P0");
   const [symbol, setSymbol] = useState("tBTCUSD");
   const [reconnect, setReconnect] = useState(0);
+  const [connect, setConnect] = useState(true);
   const dispatch = useDispatch();
   const orderBook = useSelector(selectOrderBook);
   const symbols = useSelector(selectSymbols);
@@ -22,6 +23,9 @@ function App() {
     let receivedSnapshot = false;
     const ws = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
     ws.onmessage = (msg) => {
+      if (!connect) {
+        ws.close();
+      }
       const message = JSON.parse(msg.data);
       try {
         if (message.event === "subscribed") {
@@ -59,7 +63,9 @@ function App() {
         e.reason
       );
       setTimeout(function () {
-        setReconnect(reconnect + 1);
+        if (connect) {
+          setReconnect(reconnect + 1);
+        }
       }, 1000);
     };
 
@@ -74,7 +80,7 @@ function App() {
 
     ws.onopen = () => ws.send(msg);
     return () => ws.close();
-  }, [precision, symbol, reconnect]);
+  }, [precision, symbol, reconnect, connect]);
 
   return (
     <div className="App">
@@ -101,6 +107,12 @@ function App() {
           <option value="P3">P3</option>
           <option value="P4">P4</option>
         </select>
+        <button className="connect" onClick={() => setConnect(true)}>
+          Connect
+        </button>
+        <button className="disconnect" onClick={() => setConnect(false)}>
+          Disconnect
+        </button>
       </div>
       <OrderBookTable bids={orderBook.bids} asks={orderBook.asks} />
     </div>

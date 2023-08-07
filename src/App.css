@@ -8,6 +8,10 @@
   justify-content: flex-start;
 }
 
+select:hover{
+  cursor: pointer;
+}
+
 .controllers p{
   margin:10px;
 }
@@ -17,4 +21,25 @@
 }
 .precision{
   color:white;
+}
+
+button{
+  color:white;
+  padding: 10px;
+  margin-left: 20px;
+  border: none;
+  background-color: #102331;
+  transition: 0.3s all ease-in;
+  border-radius: 5px;
+}
+button:hover{
+  cursor: pointer;
+  background-color: white;
+}
+
+.connect:hover{
+  background-color: rgb(142, 210, 142);;
+}
+.disconnect:hover{
+  background-color:rgb(219, 131, 131);
 }
