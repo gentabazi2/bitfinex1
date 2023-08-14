@@ -16,10 +16,7 @@ select:hover{
   margin:10px;
 }
 
-.symbols{
-  color:white;
-}
-.precision{
+.symbols, .precision, .frequency{
   color:white;
 }
 
@@ -42,4 +39,14 @@ button:hover{
 }
 .disconnect:hover{
   background-color:rgb(219, 131, 131);
+}
+
+.loading{
+  width: 100%;
+  height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }

@@ -26,7 +26,7 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
-    transition: 0.3s all ease-in-out;
+    /* transition: 0.3s all ease-in-out; */
 }
 
 .cell{
@@ -60,6 +60,16 @@
 }
 
 .row:hover{
-    background-color: rgba(200, 192, 192, 0.132);
+    background-color: rgb(191, 217, 255);
     cursor: pointer;
+}
+
+.isBidUpdated{
+    background-color: rgba(142, 210, 142,0.3);
+    transition: .3s all ease-in-out;
+}
+
+.isAskUpdated{
+    background-color: rgb(219, 131, 131,0.3);
+    transition: .3s all ease-in-out;
 }

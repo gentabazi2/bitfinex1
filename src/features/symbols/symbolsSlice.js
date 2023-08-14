@@ -15,7 +15,6 @@ export const fetchSymbols = createAsyncThunk(
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         },
       });
-      console.log("resp", response);
       return response.data;
     } catch (error) {
       return error.message;
@@ -29,7 +28,6 @@ const symbolsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchSymbols.fulfilled, (state, action) => {
-      //   console.log("aaa", action.payload[0]);
       return action.payload[0];
     });
   },
