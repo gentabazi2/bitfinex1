@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# Improvements that can be made
+
+There are many things that can be improved for the below code such as 
+### using type proofing with propTypes
+### indicators when data is loading 
+### better error handling
+###  The websocket connection could be created through a custom hook
+### and much more but time did not promise for all of that.
+
+Instead, I made use of the REST API endpoint to select between available trading pairs and did it via axios and the thunk middleware the reduxjs/toolkit library provides.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
